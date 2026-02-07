@@ -1,5 +1,5 @@
 import abc
-"""
+
 class weapon(abc.ABC):
     def __init__(self, name: str, attack_power: int, durability: int, description: str):
         self.name = name
@@ -51,4 +51,8 @@ class Dagger(weapon):
         print(f"you dealt {self.attack_power} to {enemy.name}!")
 
     def read_description(self):
-        print(self.description) """
+        print(self.description) 
+
+"""
+temporary, unused functions ^
+"""
