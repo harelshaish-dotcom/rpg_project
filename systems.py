@@ -28,6 +28,8 @@ class TradeSystem:
         print(f"\nYou earned {total_gold} gold!")
         print("Updated inventory:", inventory)
 
+    """ unused func ^ """
+
 class BattleSystem:
     def __init__(self, player):
         self.player = player
@@ -46,6 +48,8 @@ class BattleSystem:
                 print(f"You're facing a {enemy.name}!\n")
                 enemy.view_stats()
                 self.fight(enemy)
+
+                """ showing every hostile npc ^ """
 
                 if self.player.health <= 0:
                     print(f"\n{self.player.name} was defeated...")
@@ -77,6 +81,8 @@ class BattleSystem:
             else:
                 print("\nInvalid action!")
 
+            """ attack menu ^ """
+
 
             if enemy.health > 0:
                 damage = max(0, enemy.attack_power - self.player.defense)
@@ -87,6 +93,8 @@ class BattleSystem:
             print(f"{enemy.name} has been defeated!\n")
             enemy.drop_loot(self.player)
             self.player.inventory.show()
+
+        """ battle calculations ^ """
 
     def show_stats(self, enemy):
         print(f"\n{self.player.name}: {self.player.health} HP")
