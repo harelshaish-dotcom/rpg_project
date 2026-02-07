@@ -1,6 +1,5 @@
 import abc
 import random
-#from systems import BattleSystem
 from items import Inventory
 
 class Entity(abc.ABC):
@@ -40,11 +39,10 @@ class Prince(Entity):
     def __init__(self, name, health=100, attack_power=18, defense=5):
         super().__init__(name, health, attack_power, defense)
         self.inventory = Inventory()
-        #self.BattleSystem = BattleSystem(self)
+        
 
     def attack(self, enemy):
         pass
-        #self.BattleSystem.attack(enemy)
 
     def use_item(self, item):
         self.inventory.use(item)
@@ -60,11 +58,9 @@ class Goblin(Enemy):
     def __init__(self):
         super().__init__(name="Goblin", health=27, attack_power=8, defense=3)
         self.loot = {}
-        #self.BattleSystem = BattleSystem(self)
 
     def attack(self, enemy):
         pass
-        #self.BattleSystem.attack(enemy)
 
     def drop_loot(self, enemy):
         self.loot["gold"] = random.randint(1, 3)
@@ -86,11 +82,11 @@ class Skeleton(Enemy):
     def __init__(self):
         super().__init__(name="Skeleton", health=35, attack_power=10, defense=2)
         self.loot = {}
-        #self.BattleSystem = BattleSystem(self)
+
 
     def attack(self, enemy):
         pass
-        #self.BattleSystem.attack(enemy)
+
 
 
     def drop_loot(self, enemy):
@@ -114,11 +110,9 @@ class Zombie(Enemy):
     def __init__(self):
         super().__init__(name="Zombie", health=15, attack_power=27, defense=5)
         self.loot = {}
-        #self.BattleSystem = BattleSystem(self)
 
     def attack(self, enemy):
         pass
-        #self.BattleSystem.attack(enemy)
 
     def drop_loot(self, enemy):
         self.loot["flesh"] = random.randint(1, 3)
