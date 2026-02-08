@@ -1,12 +1,13 @@
-from npc_classes import Goblin, Skeleton, prince
-from locations import Location, Forest
-from local import entrance, start_menu
+from npc_classes import Goblin, Skeleton, Prince
+from locations import Location, Forest, Castle, Sky
+from progress import Entrance
+from systems import BattleSystem
+from items import HealingPotion
 
 
 def main() -> None:
-    while True:
-        if not entrance():
-            break
+    Entrance()
+
 
 if __name__ == "__main__":
     main()

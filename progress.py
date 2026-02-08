@@ -1,7 +1,6 @@
 from npc_classes import Prince
 from locations import Forest, Sky, Castle
 from systems import BattleSystem
-from items import HealingPotion
 
 def Entrance():
     while True:
@@ -15,7 +14,7 @@ def Entrance():
 
         return Start_menu(player)
 
-def Fight(player, place):
+def fight(player, place):
     battle = BattleSystem(player)
     if place == "Forest":
         location = Forest()
@@ -40,6 +39,12 @@ def Fight(player, place):
     elif place == "Castle":
         location = Castle()
         location.welcome()
+        print(f'\nGolden halls stretch endlessly before you, bathed in soft light, so calm and perfect it almost feels wrong.\n')
+        print("You search for valuable items..")
+        location.ObtainableItems()
+        print(f"\nA strange door catches your eye, you go look..")
+        print("You slightly open it..\n")
+        print("You see... enemies!\n")
         enemies = location.spawn_enemies()
         battle.start_battle(enemies)
     return player
@@ -75,7 +80,7 @@ def Game_start(player):
 
 def Forest_Scene(player):
     print(f"You continue walking..")
-    Fight(player, "Forest")
+    fight(player, "Forest")
     post_forest(player)
     return player
 
@@ -93,12 +98,12 @@ def post_forest(player):
 
 def decision1(player):
     print("\n1. Continue exploring.")
-    print("2. (maybe add smth)")
+    print("2. Quit the game.")
     choice = input(f"\nso.. what do you want to do now, {player.name}?\n")
     if choice == "1":
         Sky_scene(player)
     elif choice == "2":
-        pass
+        return
 
 def Sky_scene(player):
     print("After that encounter, you know you need to be more carful.")
@@ -106,4 +111,33 @@ def Sky_scene(player):
     print("You've found the exit! but something catches your eye,")
     print("A big, long poll appears from no where, disappears in the clouds, and it seems to be leading somewhere...\n")
     print("You go check it out, and as soon as you climb to the top, big and bright sunlight hits your face.")
-    Fight(player, "Sky")
+    fight(player, "Sky")
+    post_sky(player)
+
+
+def post_sky(player):
+    print(f"Well done {player.name}, you're getting much better,")
+    print("but dont let your guard down, not until you get out...\n")
+    player.display_inventory()
+    decision2(player)
+
+
+def decision2(player):
+    print("\n1. Continue exploring.")
+    print("2. Quit the game.")
+    choice = input(f"\nso.. what do you want to do now, {player.name}?\n")
+    if choice == "1":
+        Sky_scene(player)
+    elif choice == "2":
+        return
+
+def castle_scene(player):
+    print("You got down from the pole, and continued walking..\n")
+    print("After sometime, you see something in the distance,")
+    print("you get closer.. it seems like.. a castle!")
+    print("You stand before it, a radiant castle of heroes, echoing with voices that no longer exist.\n")
+    print("Its towering walls shine with a faded brilliance, as if they remember battles long past.")
+    print("The air feels heavy with honor and loss, silent yet filled with stories begging to be heard.\n")
+    print("For a moment, it feels as though the castle is watching you… measuring whether you belong.")
+    print(f'\n"You entered the castle through the majestic doors.\n')
+    fight(player, "castle")
