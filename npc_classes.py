@@ -53,6 +53,12 @@ class Prince(Entity):
     def display_inventory(self):
         self.inventory.show()
 
+    def view_stats(self):
+        print(f"\n{self.name} stats:")
+        print(f"  health: {self.health}")
+        print(f"  attack power: {self.attack_power}")
+        print(f"  defense: {self.defense}")
+
 
 class Goblin(Enemy):
     def __init__(self):
@@ -73,7 +79,7 @@ class Goblin(Enemy):
         enemy.pickup_item(self.loot)
 
     def view_stats(self):
-        print(f"{self.name} stats:")
+        print(f"\n{self.name} stats:")
         print(f"  health: {self.health}")
         print(f"  attack power: {self.attack_power}")
         print(f"  defense: {self.defense}")
@@ -100,7 +106,7 @@ class Skeleton(Enemy):
         enemy.pickup_item(self.loot)
 
     def view_stats(self):
-        print(f"{self.name} stats:")
+        print(f"\n{self.name} stats:")
         print(f"  health: {self.health}")
         print(f"  attack power: {self.attack_power}")
         print(f"  defense: {self.defense}")
@@ -125,7 +131,7 @@ class Zombie(Enemy):
         enemy.pickup_item(self.loot)
 
     def view_stats(self):
-        print(f"{self.name} stats:")
+        print(f"\n{self.name} stats:")
         print(f"  health: {self.health}")
         print(f"  attack power: {self.attack_power}")
         print(f"  defense: {self.defense}")

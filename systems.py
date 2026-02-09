@@ -45,8 +45,9 @@ class BattleSystem:
         for npc, count in enemies_dict.items():
             for i in range(count):
                 enemy = self.create_enemy(npc.name)
-                print(f"You're facing a {enemy.name}!\n")
+                print(f"You're facing a {enemy.name}!")
                 enemy.view_stats()
+                self.player.view_stats()
                 self.fight(enemy)
 
                 """ showing every hostile npc ^ """
@@ -69,17 +70,23 @@ class BattleSystem:
         while self.player.health > 0 and enemy.health > 0:
             self.show_stats(enemy)
 
-            action = input("Choose action (1. Attack / 2. Heal / 3. View enemy stats): ").lower()
+            action = input("Choose action (1. Attack / 2. Heal / 3. View stats): ").lower()
             if action == "attack" or action == "1":
                 damage = max(0, self.player.attack_power - enemy.defense)
                 enemy.health -= damage
                 print(f"\nYou hit {enemy.name} for {damage} damage!")
+
             elif action == "heal" or action == "2":
                 self.player.inventory.use(HealingPotion(), self.player)
-            elif action == "heal" or action == "3":
+
+            elif action == "view stats" or action == "3":
                 enemy.view_stats()
+                self.player.view_stats()
+                continue
+
             else:
                 print("\nInvalid action!")
+                continue
 
             """ attack menu ^ """
 

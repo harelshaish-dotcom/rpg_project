@@ -64,7 +64,7 @@ class item(abc.ABC):
 
 class HealingPotion(item):
     def __init__(self):
-        super().__init__("Healing Potion", "Restores 20 HP")
+        super().__init__("healing potion", "Restores 20 HP")
         self.healthRes = 20
 
     def use(self, character):
@@ -79,7 +79,7 @@ class HealingPotion(item):
 
 class Poison(item):
     def __init__(self):
-        super().__init__("Poison", "Deals 5 damage to enemy")
+        super().__init__("poison", "Deals 5 damage to enemy")
         self.damage = 5
 
     def use(self, enemy):

@@ -1,3 +1,4 @@
+from RPG_project.items import HealingPotion
 from npc_classes import Prince
 from locations import Forest, Sky, Castle
 from systems import BattleSystem
@@ -87,9 +88,10 @@ def Forest_Scene(player):
 def post_forest(player):
     print("You survived that, barely..\n")
     print("In here, these things happen all the time, so be careful.\n")
-    print("Because you didn't know, your health has been restored,")
+    print("Because you didn't know, your health has been restored, and you've been given two healing potions,")
     print("no more gifts from now on.")
     player.health = 100
+    player.pickup_item("healing potion", 2)
     print("\nEvery enemy you kill might drop their loot, so be aware.\n")
     print("Loot can be exchanged at the local store for goodies,")
     print("when an enemy drops loot, it will add to your Inventory.\n")
@@ -127,7 +129,7 @@ def decision2(player):
     print("2. Quit the game.")
     choice = input(f"\nso.. what do you want to do now, {player.name}?\n")
     if choice == "1":
-        Sky_scene(player)
+        castle_scene(player)
     elif choice == "2":
         return
 
