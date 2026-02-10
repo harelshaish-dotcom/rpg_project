@@ -13,7 +13,6 @@ build/
 .ruff_cache/
 .coverage
 htmlcov/
-saves
 
 # Virtual environments
 venv/

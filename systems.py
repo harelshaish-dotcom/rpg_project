@@ -79,7 +79,7 @@ class BattleSystem:
             elif action == "heal" or action == "2":
                 self.player.inventory.use(HealingPotion(), self.player)
 
-            elif action == "view stats" or action == "3":
+            elif action == "display inventory" or action == "3":
                 self.player.display_inventory()
                 continue
 
