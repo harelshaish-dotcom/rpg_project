@@ -2,7 +2,7 @@ import abc
 
 class Inventory:
     def __init__(self):
-        self.items = {}
+        self.items: dict[str, int] = {}
 
     def add(self, item, amount=1):
         if isinstance(item, dict):
@@ -15,7 +15,7 @@ class Inventory:
             key = item.name if hasattr(item, "name") else item
             self.items[key] = self.items.get(key, 0) + amount
 
-    def Remove(self, item, amount=1):
+    def remove(self, item, amount=1):
         key = item.name if hasattr(item, "name") else item
         if key in self.items:
             self.items[key] -= amount
@@ -41,13 +41,22 @@ class Inventory:
             else:
                 item.use()
 
-    def show(self):
+    def display(self):
         if not self.items:
             print("Inventory is empty.")
             return
-        print("Inventory:")
+        print("\nInventory:")
         for name, amount in self.items.items():
             print(f"  {name}: {amount}")
+
+    def to_dict(self) -> dict[str, int]:
+        return dict(self.items)
+
+    @staticmethod
+    def from_dict(data: dict) -> "Inventory":
+        inv = Inventory()
+        inv.items = {str(k): int(v) for k, v in data.items()}
+        return inv
 
 class item(abc.ABC):
     def __init__(self, name:str, description: str):

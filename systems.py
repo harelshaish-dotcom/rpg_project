@@ -70,7 +70,7 @@ class BattleSystem:
         while self.player.health > 0 and enemy.health > 0:
             self.show_stats(enemy)
 
-            action = input("Choose action (1. Attack / 2. Heal / 3. View stats): ").lower()
+            action = input("Choose action (1. Attack / 2. Heal / 3. Display inventory / 4. View stats): ").lower()
             if action == "attack" or action == "1":
                 damage = max(0, self.player.attack_power - enemy.defense)
                 enemy.health -= damage
@@ -80,6 +80,10 @@ class BattleSystem:
                 self.player.inventory.use(HealingPotion(), self.player)
 
             elif action == "view stats" or action == "3":
+                self.player.display_inventory()
+                continue
+
+            elif action == "view stats" or action == "4":
                 enemy.view_stats()
                 self.player.view_stats()
                 continue
@@ -99,7 +103,7 @@ class BattleSystem:
         if enemy.health <= 0:
             print(f"{enemy.name} has been defeated!\n")
             enemy.drop_loot(self.player)
-            self.player.inventory.show()
+            self.player.inventory.display()
 
         """ battle calculations ^ """
 

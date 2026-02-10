@@ -1,7 +1,7 @@
-from progress import Entrance
+from progress import pre_game
 
 def main() -> None:
-    Entrance()
+    pre_game()
 
 if __name__ == "__main__":
     main()

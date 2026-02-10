@@ -39,7 +39,6 @@ class Prince(Entity):
     def __init__(self, name, health=100, attack_power=18, defense=5):
         super().__init__(name, health, attack_power, defense)
         self.inventory = Inventory()
-        
 
     def attack(self, enemy):
         pass
@@ -51,13 +50,29 @@ class Prince(Entity):
         self.inventory.add(item, amount)
 
     def display_inventory(self):
-        self.inventory.show()
+        self.inventory.display()
 
     def view_stats(self):
         print(f"\n{self.name} stats:")
         print(f"  health: {self.health}")
         print(f"  attack power: {self.attack_power}")
         print(f"  defense: {self.defense}")
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "current_hp": self.health,  # or self.hp depending on your attribute name
+            "loot": self.inventory.to_dict(),
+            "last_method": getattr(self, "last_method", None),
+        }
+
+    @staticmethod
+    def from_dict(data: dict) -> "Prince":
+        p = Prince(name=data["name"])
+        p.health = int(data.get("current_hp", 100))
+        p.inventory.items = dict(data.get("loot", {}))
+        p.last_method = data.get("last_method")
+        return p
 
 
 class Goblin(Enemy):
